@@ -21,14 +21,14 @@ class AuthController {
                 return res.status(400).json({ message: "registration error", errors });
             }
             const { username, password } = req.body;
-            const candidate = await User.findOne({ username });
+            const candidate = await User.findOne({ login: username });
             if (candidate) {
                 return res.status(400).json({ message: "User already exists" });
             }
             const hashPassword = bcrypt.hashSync(password, 6);
-            const user = new User({ login: username, password: hashPassword, role: false });
+            const user = new User({ login: username, password: hashPassword, role: false});
             await user.save();
-            return res.json({ message: "User was created" });
+            return res.redirect(302, '/login');
         } catch (e) {
             console.log(e);
             res.status(400).json({ message: e.message });
@@ -46,7 +46,7 @@ class AuthController {
 
             const validPassword = bcrypt.compareSync(password, user.password);
             if (!validPassword) {
-                return res.status(400).json({ message: "Invalid password" });
+                return res.status(400).json({ message:  "Invalid password"});
             }
 
             const token = generateAccessToken(user._id, user.role);

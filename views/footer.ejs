@@ -6,12 +6,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/3b83a3096d.js " crossorigin="anonymous"></script> 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-        const jwtToken = req.cookies.access_token; 
-        console.log(jwtToken);
-        if (jwtToken) {
-            const decodedToken = atob(jwtToken.split('.')[1]);
-            const tokenData = JSON.parse(decodedToken);
-        }
-    })
 </script>

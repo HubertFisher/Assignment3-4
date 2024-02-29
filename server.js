@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const routes = require('./routes/index');
-
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 
+
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -18,9 +20,11 @@ app.use('/', routes);
 // Connect to MongoDB Atlas
 const uri = 'mongodb+srv://alit:Alit2005@cluster0.c9n41rf.mongodb.net/travelAgency';
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+
+mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
+
 
 // Start the server
 app.listen(port, () => {

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+<style>
+    
+    .container {
+            background-color: #ffffffda;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center; 
+            width: 80%; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+    
+        h1 {
+            color: #333;
+        }
+    select{
+        min-width: 100%;}
+    input{
+        min-width: 100%;
+    }
+    textarea{
+        min-width: 100%;
+    }
+        .result-container {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        button[type="submit"] {
+            background-color: #333;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px; 
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+    
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 2px solid #aaa;
+            background-color: transparent;
+            transition: border-bottom-color 0.3s ease;
+        }
+        span.admin {
+            color: red;
+            font-weight: bold;
+        }
+        span.user {
+            color: green;
+            font-weight: bold;
+        }
+       
+        select[name="language"] {
+        width: auto;
+        padding: 5px 10px;
+        border: 1px solid #4c64cd;
+        border-radius: 5px;
+        background-color: #4c64cd;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+    select[name="language"] {
+        padding: 10px 15px;
+        border: 1px solid #4c64cd;
+        border-radius: 5px;
+        background-color: #4c64cd;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+    
+    select[name="language"]:focus {
+        border-color: #ffffff;
+    }
+
+.navbar-nav li.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav li.form-inline select[name="language"] {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav li.form-inline {
+        flex-direction: column;
+    }
+    
+    .navbar-nav li.form-inline select[name="language"] {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+h2 {
+    font-family: Arial, sans-serif;
+}
+
+  
+    
+</style>
+<body class="container-fluid p-0" > 
+    <!--Navbar-->
+    <%- include('navbar') %>
+
+    <div class="container mt-5">
+        <h2>Tours Administration </h2>
+        <h3>AddTour</h3>
+
+        <form action="/admin/add" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Tour Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL:</label>
+                <input type="text" class="form-control" id="image" name="image" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="duration" class="form-label">Duration (in days):</label>
+                <input type="number" class="form-control" id="duration" name="duration" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Start Date:</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="endDate" class="form-label">End Date:</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="maxParticipants" class="form-label">Max Participants:</label>
+                <input type="number" class="form-control" id="maxParticipants" name="maxParticipants" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Tour</button>
+        </form>
+    </div>
+
+
+    <div class="container">
+        <h3>Update tour</h3>
+        <form id="updateTourForm">
+            <select class="form-control" name="tourId" required >
+            <option value="" disabled selected></option>
+            <% tours.forEach(tour => { %>
+                <option value="<%= tour._id %>">
+                    <%=tour.name %>
+                </option>
+            <% }); %>
+              </select>
+            <div class="mb-3">
+                <label for="name" class="form-label">Tour Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL:</label>
+                <input type="text" class="form-control" id="image" name="image" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="mb-3">
+                <label for="duration" class="form-label">Duration (in days):</label>
+                <input type="number" class="form-control" id="duration" name="duration" required>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Start Date:</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="endDate" class="form-label">End Date:</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="maxParticipants" class="form-label">Max Participants:</label>
+                <input type="number" class="form-control" id="maxParticipants" name="maxParticipants" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="updateTourbtn">Update Tour</button>
+        </form>
+    </div>
+    <div class="container">
+        <h3>Update tour</h3>
+        <form id="deleteTourForm">
+            <select class="form-control" name="tourId" required>
+                <option value="" disabled selected></option>
+                <% tours.forEach(tour => { %>
+                    <option value="<%= tour._id %>">
+                        <%= tour.name %>
+                    </option>
+                <% }); %>
+            </select>
+            <button type="submit" class="btn btn-primary" id="deleteTourBtn">Delete Tour</button>
+        </form>
+    </div>
+</body>
+<!-- footer--------------------------------------------- -->
+<%- include('footer') %>
+<script src = "/scripts/admin.js"></script>
+</html>
