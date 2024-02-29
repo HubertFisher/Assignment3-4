@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+
+<body class="container-fluid p-0">
+
+    <div class="container d-flex justify-content-center align-items-center ">
+      <div class="container bg-light">
+        <form class="p-5 m-5" action="/login" method="post" id="registrationForm" onsubmit="submitForm(event)">
+          <!-- User input -->
+          <div class="form-outline mb-4 d-flex justify-content-center align-items-center">
+            <label class="form-label" for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" />
+          </div>
+  
+          <!-- Password input -->
+          <div class="form-outline mb-4 d-flex justify-content-center align-items-center ">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" />
+          </div>  
+          <!-- Submit button -->
+          <div class="d-flex justify-content-center align-items-center ">
+            <input type="submit" class="btn btn-primary btn-block mb-4 " value="Signup"/>
+          </div>
+        </form>
+      </div>
+    </div>
+</body>  
+<%- include('footer') %>
+<script src="scripts/login.js"></script>
+</html>

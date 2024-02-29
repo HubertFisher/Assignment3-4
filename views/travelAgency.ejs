@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+<body>
+<%- include('navbar') %>
+<section id="bdy2">
+    <div class="container p-5">
+        <div class="row" id="toursContainer">
+            <% tours.forEach(tour => { %>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <a href="/travelAgency/<%= tour._id %>" style="text-decoration: none; color: black;">
+                        <div class="card">
+                            <img src="<%= tour.image %>" alt="<%= tour.description %>" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= tour.description %></h5>
+                                <p class="card-text"><%= tour.location %></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+<%- include('footer') %>
+</body>
+</html>

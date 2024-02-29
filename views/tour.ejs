@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+
+<body class="container-fluid p-0" > 
+    <!--Navbar-->
+    <%- include('navbar') %>
+    <div class="container pt-3 p-5">
+        <div class="row bg-dark p-5 rounded ">
+            <div class="col-md-6">
+                <img src="<%= tour.image %>" alt="<%= tour.description %>" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-white">
+                <h2><%= tour.description %></h2>
+                <p><%= tour.location %></p>
+                <p><%= tour.duration %> days</p>
+                <p><%= tour.maxParticipants %> people</p>
+                <p>Price: <%= tour.price %>$</p>
+                <p>Start date: <%= tour.startDate %></p>
+                <p>End date: <%= tour.endDate %></p>
+            </div>
+        </div>
+    </div>
+<!-- footer--------------------------------------------- -->
+<%- include('footer') %>
+</body>
+</html>

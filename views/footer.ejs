@@ -1,0 +1,17 @@
+<footer class="footer text-white text-center large-font">
+    <p>© 2024 Ali Tulegenov | SE-2208</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/3b83a3096d.js " crossorigin="anonymous"></script> 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        const jwtToken = req.cookies.access_token; 
+        console.log(jwtToken);
+        if (jwtToken) {
+            const decodedToken = atob(jwtToken.split('.')[1]);
+            const tokenData = JSON.parse(decodedToken);
+        }
+    })
+</script>

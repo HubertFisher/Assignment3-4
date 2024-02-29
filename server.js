@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', routes);
 
 // Connect to MongoDB Atlas
-const uri = 'mongodb+srv://alit:Alit2005@cluster0.c9n41rf.mongodb.net/admin';
+const uri = 'mongodb+srv://alit:Alit2005@cluster0.c9n41rf.mongodb.net/travelAgency';
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB Atlas'))
