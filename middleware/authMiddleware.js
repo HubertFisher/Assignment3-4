@@ -7,8 +7,9 @@ module.exports = function (req, res, next) {
     }
 
     try {
-        const token = req.headers.authorization.split(' ')[1]
+        const token = req.cookies.access_token; 
         if (!token) {
+            console.log('user is not authorized')
             return res.status(403).json({message: "user is not authorized"})
         }
         const decodedData = jwt.verify(token, secret)

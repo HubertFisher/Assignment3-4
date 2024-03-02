@@ -1,7 +1,7 @@
 const Router = require('express')
 const router = new Router()
 const auth = require('./AuthRouter')
-const tour = require('./toursRouter')
+const toursRouter = require('./toursRouter')
 const isAdminMiddleware  = require('../middleware/isAdminMiddleware')
 const AdminRouter	= require('./AdminRouter')
 
@@ -10,11 +10,8 @@ router.get('/', (req, res) => {
 	res.render('registration.ejs', { title: 'Registration' })
 })
 router.use('/', auth)
-router.use('/travelAgency', tour)
+router.use('/travelAgency', toursRouter)
 
-router.get('/travelAgency', (req, res) => {
-	res.render('travelAgency.ejs', { title: 'travel Agency' })
-})
 router.get('/login', (req, res) => {
 	res.render('login.ejs', { title: 'Login' })
 })

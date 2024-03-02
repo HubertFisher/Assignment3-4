@@ -10,7 +10,8 @@
             <div class="col-md-6">
                 <img src="<%= tour.image %>" alt="<%= tour.description %>" class="img-fluid">
             </div>
-            <div class="col-md-6 text-white">
+            <div class="col-md-6 text-white"  id="tourData"  data-tour-id="<%= tour._id %>" data-tour-name="<%= tour.name %>" data-tour-price="<%= tour.price %>">
+                <h1><%= tour.name %></h1>
                 <h2><%= tour.description %></h2>
                 <p><%= tour.location %></p>
                 <p><%= tour.duration %> days</p>
@@ -18,10 +19,13 @@
                 <p>Price: <%= tour.price %>$</p>
                 <p>Start date: <%= tour.startDate %></p>
                 <p>End date: <%= tour.endDate %></p>
+                <button id= "addToCartBtn"class="button"> Add to cart</button>
             </div>
         </div>
     </div>
+    
 <!-- footer--------------------------------------------- -->
 <%- include('footer') %>
+<script src="/scripts/addToCart.js"></script>
 </body>
 </html>
